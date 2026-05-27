@@ -12,395 +12,495 @@ def home():
 <head>
 <title>Proposal Writer AI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-    font-family:'Poppins',sans-serif;
-    background:#0a0a0a;
-    color:white;
+    font-family:'Inter',sans-serif;
+    background:#080810;
+    color:#e2e8f0;
     min-height:100vh;
     overflow-x:hidden;
     position:relative
 }
 
-/* BLURRY BLOBS */
+/* BLOBS */
 .blob{
     position:fixed;
     border-radius:50%;
-    filter:blur(80px);
-    opacity:0.25;
+    filter:blur(100px);
+    opacity:0.12;
     z-index:0;
-    animation:blobMove 8s ease-in-out infinite alternate
+    pointer-events:none
 }
 .blob1{
-    width:500px;height:500px;
-    background:radial-gradient(circle,#7c3aed,#4c1d95);
-    top:-100px;left:-100px;
-    animation-duration:10s
+    width:600px;height:600px;
+    background:#7c3aed;
+    top:-200px;left:-200px;
+    animation:blob1Move 15s ease-in-out infinite alternate
 }
 .blob2{
-    width:400px;height:400px;
-    background:radial-gradient(circle,#06b6d4,#0e7490);
-    bottom:-100px;right:-100px;
-    animation-duration:12s;
-    animation-delay:2s
+    width:500px;height:500px;
+    background:#06b6d4;
+    bottom:-200px;right:-200px;
+    animation:blob2Move 18s ease-in-out infinite alternate
 }
-@keyframes blobMove{
+.blob3{
+    width:300px;height:300px;
+    background:#4f46e5;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    animation:blob3Move 12s ease-in-out infinite alternate
+}
+@keyframes blob1Move{
     0%{transform:translate(0,0) scale(1)}
-    33%{transform:translate(60px,-40px) scale(1.1)}
-    66%{transform:translate(-40px,60px) scale(0.95)}
-    100%{transform:translate(30px,30px) scale(1.05)}
+    100%{transform:translate(80px,60px) scale(1.15)}
+}
+@keyframes blob2Move{
+    0%{transform:translate(0,0) scale(1)}
+    100%{transform:translate(-60px,-80px) scale(1.1)}
+}
+@keyframes blob3Move{
+    0%{transform:translate(-50%,-50%) scale(1)}
+    100%{transform:translate(-45%,-55%) scale(1.2)}
 }
 
 /* POPUP */
 .popup-overlay{
-    position:fixed;top:0;left:0;width:100%;height:100%;
-    background:rgba(0,0,0,0.9);
+    position:fixed;top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.92);
     display:flex;align-items:center;justify-content:center;
-    z-index:999;backdrop-filter:blur(10px)
+    z-index:999;backdrop-filter:blur(12px)
 }
 .popup-box{
-    background:rgba(15,15,25,0.95);
-    border:1px solid rgba(124,58,237,0.6);
-    border-radius:24px;padding:40px 30px;text-align:center;
-    max-width:340px;width:90%;
-    box-shadow:0 0 60px rgba(124,58,237,0.4),inset 0 0 60px rgba(124,58,237,0.05);
-    animation:popIn 0.7s cubic-bezier(0.175,0.885,0.32,1.275)
+    background:rgba(12,12,20,0.98);
+    border:1px solid rgba(124,58,237,0.4);
+    border-radius:20px;
+    padding:45px 35px;
+    text-align:center;
+    max-width:360px;width:90%;
+    box-shadow:0 0 80px rgba(124,58,237,0.2),
+               0 0 0 1px rgba(255,255,255,0.03);
+    animation:popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275)
 }
 @keyframes popIn{
-    from{transform:scale(0.3) rotate(-15deg);opacity:0}
-    to{transform:scale(1) rotate(0deg);opacity:1}
+    from{transform:scale(0.85) translateY(20px);opacity:0}
+    to{transform:scale(1) translateY(0);opacity:1}
 }
-.popup-lottie{width:120px;height:120px;margin:0 auto 15px}
+.popup-logo{
+    width:56px;height:56px;
+    background:linear-gradient(135deg,#7c3aed,#06b6d4);
+    border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 20px;
+    font-size:24px;
+    box-shadow:0 0 30px rgba(124,58,237,0.4)
+}
 .popup-box h1{
     font-family:'Orbitron',sans-serif;
-    font-size:22px;font-weight:900;margin-bottom:10px;
-    text-shadow:0 0 20px #7c3aed,0 0 40px #7c3aed;
-    background:linear-gradient(135deg,#a78bfa,#06b6d4);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent
+    font-size:20px;font-weight:700;
+    color:#f1f5f9;
+    margin-bottom:10px;
+    letter-spacing:1px
 }
-.popup-box p{color:#888;font-size:13px;margin-bottom:20px;line-height:1.6}
-.badge{
+.popup-box p{
+    color:#64748b;font-size:13px;
+    line-height:1.7;margin-bottom:25px
+}
+.popup-features{
+    display:flex;flex-direction:column;gap:8px;
+    margin-bottom:25px;text-align:left
+}
+.popup-feature{
+    display:flex;align-items:center;gap:10px;
+    color:#94a3b8;font-size:12px
+}
+.popup-feature-dot{
+    width:6px;height:6px;border-radius:50%;
     background:linear-gradient(135deg,#7c3aed,#06b6d4);
-    color:white;padding:8px 20px;border-radius:20px;
-    font-weight:600;font-size:12px;display:inline-block;
-    margin-bottom:20px;
-    box-shadow:0 0 20px rgba(124,58,237,0.5)
+    flex-shrink:0
 }
 .popup-btn{
-    width:100%;padding:16px;
-    background:linear-gradient(135deg,#7c3aed,#06b6d4);
-    color:white;border:none;border-radius:14px;
-    font-size:16px;font-weight:700;
-    font-family:'Orbitron',sans-serif;
-    letter-spacing:1px;
-    box-shadow:0 0 30px rgba(124,58,237,0.6);
-    transition:transform 0.2s,box-shadow 0.2s
+    width:100%;padding:15px;
+    background:linear-gradient(135deg,#7c3aed,#4f46e5);
+    color:white;border:none;border-radius:12px;
+    font-size:14px;font-weight:600;
+    font-family:'Inter',sans-serif;
+    letter-spacing:0.5px;
+    cursor:pointer;
+    box-shadow:0 4px 20px rgba(124,58,237,0.4);
+    transition:all 0.2s
 }
-.popup-btn:active{transform:scale(0.97)}
+.popup-btn:hover{
+    box-shadow:0 4px 30px rgba(124,58,237,0.6);
+    transform:translateY(-1px)
+}
 
-/* MAIN CONTAINER */
+/* MAIN */
 .container{
     position:relative;z-index:1;
-    max-width:700px;margin:0 auto;padding:20px
+    max-width:680px;margin:0 auto;padding:20px
 }
 
-/* HEADER */
-.header{text-align:center;padding:40px 0 20px;position:relative}
-.header-lottie{width:100px;height:100px;margin:0 auto 10px}
-.header h1{
+/* NAVBAR */
+.navbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 0 30px
+}
+.nav-logo{
+    display:flex;align-items:center;gap:10px
+}
+.nav-logo-icon{
+    width:36px;height:36px;
+    background:linear-gradient(135deg,#7c3aed,#06b6d4);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px
+}
+.nav-logo-text{
     font-family:'Orbitron',sans-serif;
-    font-size:32px;font-weight:900;
-    background:linear-gradient(135deg,#a78bfa,#06b6d4,#f472b6);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    text-shadow:none;
-    filter:drop-shadow(0 0 20px rgba(124,58,237,0.8));
-    animation:neonPulse 2s ease-in-out infinite alternate;
-    letter-spacing:2px
+    font-size:14px;font-weight:700;
+    color:#f1f5f9;letter-spacing:1px
 }
-@keyframes neonPulse{
-    from{filter:drop-shadow(0 0 10px rgba(124,58,237,0.6))}
-    to{filter:drop-shadow(0 0 30px rgba(6,182,212,0.9))}
-}
-.header p{color:#555;font-size:13px;margin-top:8px;letter-spacing:1px}
-
-/* GLASS CARD */
-.card{
-    background:rgba(255,255,255,0.03);
+.nav-badge{
+    background:rgba(124,58,237,0.15);
     border:1px solid rgba(124,58,237,0.3);
-    border-radius:24px;padding:30px;margin:15px 0;
-    backdrop-filter:blur(15px);
-    box-shadow:0 8px 32px rgba(0,0,0,0.5),
-               0 0 0 1px rgba(124,58,237,0.1),
-               inset 0 1px 0 rgba(255,255,255,0.05)
+    color:#a78bfa;
+    padding:5px 12px;border-radius:20px;
+    font-size:11px;font-weight:600;
+    letter-spacing:0.5px
+}
+
+/* HERO */
+.hero{text-align:center;padding:20px 0 35px}
+.hero-title{
+    font-family:'Orbitron',sans-serif;
+    font-size:30px;font-weight:900;
+    line-height:1.2;margin-bottom:12px;
+    background:linear-gradient(135deg,#f1f5f9 0%,#a78bfa 50%,#06b6d4 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 30px rgba(124,58,237,0.4))
+}
+.hero-sub{
+    color:#475569;font-size:14px;
+    line-height:1.6;max-width:400px;margin:0 auto
+}
+
+/* DIVIDER */
+.divider{
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(124,58,237,0.3),rgba(6,182,212,0.3),transparent);
+    margin:5px 0 25px
+}
+
+/* CARD */
+.card{
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:16px;padding:28px;margin-bottom:16px;
+    backdrop-filter:blur(20px);
+    box-shadow:0 4px 24px rgba(0,0,0,0.4)
+}
+.card-title{
+    font-size:11px;font-weight:600;
+    color:#475569;text-transform:uppercase;
+    letter-spacing:2px;margin-bottom:20px;
+    display:flex;align-items:center;gap:8px
+}
+.card-title::before{
+    content:'';width:3px;height:12px;
+    background:linear-gradient(#7c3aed,#06b6d4);
+    border-radius:2px;display:inline-block
 }
 
 label{
-    color:#a78bfa;font-weight:600;font-size:11px;
-    display:block;margin-bottom:8px;
-    text-transform:uppercase;letter-spacing:2px
+    color:#64748b;font-weight:500;font-size:12px;
+    display:block;margin-bottom:6px;letter-spacing:0.5px
 }
-
 input,textarea{
-    width:100%;padding:14px 16px;border-radius:12px;
-    border:1px solid rgba(124,58,237,0.2);
-    background:rgba(0,0,0,0.4);
-    color:white;font-size:14px;font-family:'Poppins',sans-serif;
-    margin-bottom:20px;
-    transition:all 0.3s ease;
+    width:100%;padding:13px 15px;border-radius:10px;
+    border:1px solid rgba(255,255,255,0.07);
+    background:rgba(0,0,0,0.3);
+    color:#e2e8f0;font-size:14px;
+    font-family:'Inter',sans-serif;
+    margin-bottom:18px;
+    transition:all 0.25s ease;
     outline:none
 }
 input:focus,textarea:focus{
-    border-color:#06b6d4;
-    background:rgba(6,182,212,0.05);
-    box-shadow:0 0 0 3px rgba(6,182,212,0.15),
-               0 0 20px rgba(6,182,212,0.2)
+    border-color:rgba(124,58,237,0.6);
+    background:rgba(124,58,237,0.04);
+    box-shadow:0 0 0 3px rgba(124,58,237,0.1)
 }
-textarea{height:110px;resize:none}
-input::placeholder,textarea::placeholder{color:#333}
+input::placeholder,textarea::placeholder{
+    color:#1e293b
+}
+textarea{height:100px;resize:none}
 
-/* GENERATE BUTTON */
+/* BUTTON */
 #genBtn{
-    width:100%;padding:18px;
-    background:linear-gradient(135deg,#7c3aed,#06b6d4);
-    color:white;border:none;border-radius:14px;
-    font-size:16px;font-weight:700;
-    font-family:'Orbitron',sans-serif;
-    letter-spacing:1px;cursor:pointer;
+    width:100%;padding:16px;
+    background:linear-gradient(135deg,#7c3aed,#4f46e5);
+    color:white;border:none;border-radius:12px;
+    font-size:14px;font-weight:600;
+    font-family:'Inter',sans-serif;
+    letter-spacing:0.5px;cursor:pointer;
     position:relative;overflow:hidden;
-    box-shadow:0 0 30px rgba(124,58,237,0.5);
-    animation:btnPulse 2s ease-in-out infinite
+    box-shadow:0 4px 20px rgba(124,58,237,0.35);
+    transition:all 0.25s ease;
+    animation:subtlePulse 3s ease-in-out infinite
 }
-@keyframes btnPulse{
-    0%,100%{box-shadow:0 0 20px rgba(124,58,237,0.5),0 0 40px rgba(124,58,237,0.2)}
-    50%{box-shadow:0 0 40px rgba(6,182,212,0.7),0 0 80px rgba(6,182,212,0.3)}
+@keyframes subtlePulse{
+    0%,100%{box-shadow:0 4px 20px rgba(124,58,237,0.35)}
+    50%{box-shadow:0 4px 35px rgba(124,58,237,0.6)}
 }
+#genBtn:active{transform:scale(0.99)}
 #genBtn::after{
     content:'';position:absolute;
-    top:-50%;left:-60%;
-    width:200%;height:200%;
-    background:linear-gradient(transparent,rgba(255,255,255,0.08),transparent);
-    transform:rotate(30deg);
-    animation:shimmer 3s linear infinite
+    top:0;left:-100%;
+    width:100%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
+    animation:shimmer 2.5s linear infinite
 }
 @keyframes shimmer{
-    0%{left:-60%}100%{left:100%}
+    0%{left:-100%}100%{left:100%}
 }
 
 /* LOADING */
-#loading{text-align:center;padding:30px;display:none}
+#loading{
+    text-align:center;padding:35px;display:none
+}
+.loading-inner{
+    display:inline-flex;flex-direction:column;
+    align-items:center;gap:15px
+}
 .spinner{
-    width:60px;height:60px;
-    border:2px solid rgba(124,58,237,0.2);
-    border-top:2px solid #a78bfa;
+    width:40px;height:40px;
+    border:2px solid rgba(124,58,237,0.15);
+    border-top:2px solid #7c3aed;
     border-right:2px solid #06b6d4;
     border-radius:50%;
-    animation:spin 0.8s linear infinite;
-    margin:0 auto 15px;
-    box-shadow:0 0 30px rgba(124,58,237,0.4)
+    animation:spin 0.7s linear infinite
 }
 @keyframes spin{to{transform:rotate(360deg)}}
 #loading p{
-    color:#a78bfa;font-size:13px;
-    font-family:'Orbitron',sans-serif;
-    letter-spacing:1px;
-    animation:loadingPulse 1.5s ease infinite
+    color:#475569;font-size:13px;
+    font-weight:500;letter-spacing:0.5px
 }
-@keyframes loadingPulse{0%,100%{opacity:1}50%{opacity:0.3}}
 
 /* OUTPUT */
 .output{
     background:rgba(255,255,255,0.02);
-    border:1px solid rgba(6,182,212,0.3);
-    border-radius:24px;padding:25px;
-    margin:15px 0;display:none;
-    backdrop-filter:blur(15px);
-    box-shadow:0 0 40px rgba(6,182,212,0.1),
-               inset 0 1px 0 rgba(255,255,255,0.05);
-    animation:slideUp 0.6s ease
+    border:1px solid rgba(6,182,212,0.2);
+    border-radius:16px;padding:28px;
+    margin-bottom:16px;display:none;
+    backdrop-filter:blur(20px);
+    box-shadow:0 4px 24px rgba(0,0,0,0.4),
+               0 0 0 1px rgba(6,182,212,0.05);
+    animation:fadeUp 0.4s ease
 }
-@keyframes slideUp{
-    from{opacity:0;transform:translateY(40px)}
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px)}
     to{opacity:1;transform:translateY(0)}
 }
 .output-header{
-    display:flex;align-items:center;gap:10px;margin-bottom:15px
+    display:flex;align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px
 }
-.result-lottie{width:50px;height:50px}
-.output h3{
-    font-family:'Orbitron',sans-serif;
-    font-size:14px;font-weight:700;
-    background:linear-gradient(135deg,#a78bfa,#06b6d4);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    letter-spacing:1px
+.output-title{
+    font-size:11px;font-weight:600;
+    color:#475569;text-transform:uppercase;
+    letter-spacing:2px;
+    display:flex;align-items:center;gap:8px
+}
+.output-title::before{
+    content:'';width:3px;height:12px;
+    background:linear-gradient(#06b6d4,#7c3aed);
+    border-radius:2px;display:inline-block
+}
+.output-status{
+    display:flex;align-items:center;gap:6px;
+    font-size:11px;color:#22c55e;font-weight:500
+}
+.status-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:#22c55e;
+    animation:statusPulse 2s ease infinite
+}
+@keyframes statusPulse{
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:0.5;transform:scale(0.8)}
 }
 .proposal-text{
-    background:rgba(0,0,0,0.4);padding:20px;
-    border-radius:14px;line-height:1.9;color:#ccc;
+    background:rgba(0,0,0,0.25);
+    padding:20px;border-radius:12px;
+    line-height:1.8;color:#cbd5e1;
     font-size:14px;
-    border-left:2px solid #7c3aed;
-    border-bottom:1px solid rgba(124,58,237,0.2);
-    min-height:50px
+    white-space:pre-wrap;
+    word-spacing:normal;
+    letter-spacing:normal;
+    border-left:2px solid rgba(124,58,237,0.4);
+    min-height:60px;font-family:'Inter',sans-serif
 }
 #copyBtn{
-    margin-top:15px;width:100%;padding:15px;
-    background:rgba(5,150,105,0.2);
-    border:1px solid rgba(5,150,105,0.4);
-    color:#34d399;border-radius:12px;
-    font-size:14px;font-weight:600;
-    font-family:'Poppins',sans-serif;
-    transition:all 0.3s
+    margin-top:16px;width:100%;padding:13px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    color:#94a3b8;border-radius:10px;
+    font-size:13px;font-weight:500;
+    font-family:'Inter',sans-serif;
+    cursor:pointer;
+    transition:all 0.2s ease
 }
-#copyBtn:active{background:rgba(5,150,105,0.4)}
+#copyBtn:active{
+    background:rgba(255,255,255,0.06);
+    color:#e2e8f0
+}
 
 /* CONFETTI */
 .confetti-piece{
-    position:fixed;width:8px;height:8px;
-    border-radius:2px;z-index:9999;
-    pointer-events:none;
-    animation:confettiFall 2.5s ease-in forwards
+    position:fixed;border-radius:2px;
+    z-index:9999;pointer-events:none;
+    animation:confettiFall 3s ease-in forwards
 }
 @keyframes confettiFall{
-    0%{transform:translateY(-20px) rotate(0deg);opacity:1}
-    100%{transform:translateY(100vh) rotate(720deg);opacity:0}
+    0%{transform:translateY(-10px) rotate(0deg);opacity:1}
+    100%{transform:translateY(105vh) rotate(540deg);opacity:0}
 }
 
-/* STICKERS */
-.stickers{
-    text-align:center;padding:10px 0 30px
+/* FOOTER */
+.footer{
+    text-align:center;padding:20px 0 30px
 }
-.sticker{
-    font-size:30px;display:inline-block;
-    margin:6px;animation:stickerFloat 3s ease-in-out infinite
-}
-.sticker:nth-child(1){animation-delay:0s}
-.sticker:nth-child(2){animation-delay:0.4s}
-.sticker:nth-child(3){animation-delay:0.8s}
-.sticker:nth-child(4){animation-delay:1.2s}
-.sticker:nth-child(5){animation-delay:1.6s}
-@keyframes stickerFloat{
-    0%,100%{transform:translateY(0) rotate(-5deg)}
-    50%{transform:translateY(-15px) rotate(5deg)}
+.footer p{
+    color:#1e293b;font-size:11px;letter-spacing:1px
 }
 </style>
 </head>
 <body>
 
-<!-- BLOBS -->
 <div class="blob blob1"></div>
 <div class="blob blob2"></div>
+<div class="blob blob3"></div>
 
 <!-- POPUP -->
 <div class="popup-overlay" id="welcomePopup">
     <div class="popup-box">
-        <div class="popup-lottie" id="popupLottie"></div>
-        <h1>PROPOSAL AI</h1>
-        <p>Next-gen AI powered proposal generator. Win more clients instantly!</p>
-        <div class="badge">⚡ FREE • UNLIMITED • INSTANT</div>
-        <button class="popup-btn" id="startBtn">🚀 LAUNCH APP</button>
+        <div class="popup-logo">⚡</div>
+        <h1>PROPOSAL WRITER</h1>
+        <p>AI-powered proposal generator for freelancers. Win more clients with professional proposals.</p>
+        <div class="popup-features">
+            <div class="popup-feature">
+                <div class="popup-feature-dot"></div>
+                <span>Generate proposals in seconds</span>
+            </div>
+            <div class="popup-feature">
+                <div class="popup-feature-dot"></div>
+                <span>Professional quality output</span>
+            </div>
+            <div class="popup-feature">
+                <div class="popup-feature-dot"></div>
+                <span>100% free, no signup required</span>
+            </div>
+        </div>
+        <button class="popup-btn" id="startBtn">Get Started Free</button>
     </div>
 </div>
 
 <div class="container">
-    <!-- HEADER -->
-    <div class="header">
-        <div class="header-lottie" id="headerLottie"></div>
-        <h1>PROPOSAL WRITER</h1>
-        <p>[ AI POWERED • CYBERPUNK EDITION ]</p>
+
+    <div class="navbar">
+        <div class="nav-logo">
+            <div class="nav-logo-icon">⚡</div>
+            <span class="nav-logo-text">PROPOSAL AI</span>
+        </div>
+        <div class="nav-badge">FREE</div>
     </div>
 
-    <!-- FORM CARD -->
+    <div class="hero">
+        <h1 class="hero-title">Write Winning<br>Proposals Instantly</h1>
+        <p class="hero-sub">AI-powered tool that generates professional freelancer proposals. Just fill in the details and let AI do the rest.</p>
+    </div>
+
+    <div class="divider"></div>
+
     <div class="card">
-        <label>⬡ Project Title</label>
+        <div class="card-title">Project Details</div>
+        <label>Project Title</label>
         <input type="text" id="title" placeholder="e.g. Build a landing page for my bakery"/>
-        <label>⬡ Project Description</label>
+        <label>Project Description</label>
         <textarea id="description" placeholder="Describe what the client needs..."></textarea>
-        <label>⬡ Your Skills</label>
+        <label>Your Skills</label>
         <input type="text" id="skills" placeholder="e.g. Python, Web Design, React"/>
-        <button id="genBtn">⚡ GENERATE WINNING PROPOSAL</button>
+        <button id="genBtn">Generate Proposal</button>
     </div>
 
-    <!-- LOADING -->
     <div id="loading">
-        <div class="spinner"></div>
-        <p>[ AI PROCESSING... ]</p>
+        <div class="loading-inner">
+            <div class="spinner"></div>
+            <p>Generating your proposal...</p>
+        </div>
     </div>
 
-    <!-- OUTPUT -->
     <div class="output" id="output">
         <div class="output-header">
-            <div class="result-lottie" id="resultLottie"></div>
-            <h3>◈ YOUR WINNING PROPOSAL</h3>
+            <div class="output-title">Generated Proposal</div>
+            <div class="output-status">
+                <div class="status-dot"></div>
+                Ready
+            </div>
         </div>
         <div class="proposal-text" id="proposalText"></div>
-        <button id="copyBtn">📋 Copy to Clipboard</button>
+        <button id="copyBtn">Copy to Clipboard</button>
     </div>
 
-    <!-- STICKERS -->
-    <div class="stickers">
-        <span class="sticker">🚀</span>
-        <span class="sticker">💡</span>
-        <span class="sticker">🎯</span>
-        <span class="sticker">⚡</span>
-        <span class="sticker">🏆</span>
+    <div class="footer">
+        <p>PROPOSAL WRITER AI</p>
     </div>
+
 </div>
 
 <script>
-// LOTTIE ANIMATIONS
-lottie.loadAnimation({
-    container:document.getElementById('popupLottie'),
-    renderer:'svg',path:'https://assets9.lottiefiles.com/packages/lf20_myejiggj.json',
-    loop:true,autoplay:true
-});
-lottie.loadAnimation({
-    container:document.getElementById('headerLottie'),
-    renderer:'svg',path:'https://assets5.lottiefiles.com/packages/lf20_fcfjwiyb.json',
-    loop:true,autoplay:true
-});
-lottie.loadAnimation({
-    container:document.getElementById('resultLottie'),
-    renderer:'svg',path:'https://assets10.lottiefiles.com/packages/lf20_touohxv0.json',
-    loop:true,autoplay:true
-});
-
 // POPUP
-document.getElementById("startBtn").addEventListener("touchend",function(e){
-    e.preventDefault();
+document.getElementById("startBtn").addEventListener("click",function(){
     document.getElementById("welcomePopup").style.display="none";
 });
-document.getElementById("startBtn").addEventListener("click",function(){
+document.getElementById("startBtn").addEventListener("touchend",function(e){
+    e.preventDefault();
     document.getElementById("welcomePopup").style.display="none";
 });
 
 // CONFETTI
 function launchConfetti(){
-    var colors=["#a78bfa","#06b6d4","#f472b6","#fbbf24","#34d399"];
-    for(var i=0;i<60;i++){
-        var piece=document.createElement("div");
-        piece.className="confetti-piece";
-        piece.style.left=Math.random()*100+"vw";
-        piece.style.background=colors[Math.floor(Math.random()*colors.length)];
-        piece.style.animationDelay=Math.random()*1.5+"s";
-        piece.style.animationDuration=(2+Math.random()*2)+"s";
-        piece.style.width=(5+Math.random()*8)+"px";
-        piece.style.height=(5+Math.random()*8)+"px";
-        piece.style.borderRadius=Math.random()>0.5?"50%":"2px";
-        document.body.appendChild(piece);
-        setTimeout(function(p){return function(){p.remove()}}(piece),4000);
+    var colors=["#a78bfa","#06b6d4","#818cf8","#e879f9","#38bdf8"];
+    for(var i=0;i<50;i++){
+        var p=document.createElement("div");
+        p.className="confetti-piece";
+        p.style.left=Math.random()*100+"vw";
+        p.style.background=colors[Math.floor(Math.random()*colors.length)];
+        p.style.width=(4+Math.random()*6)+"px";
+        p.style.height=(4+Math.random()*6)+"px";
+        p.style.animationDelay=Math.random()*2+"s";
+        p.style.animationDuration=(2.5+Math.random()*2)+"s";
+        p.style.borderRadius=Math.random()>0.5?"50%":"2px";
+        document.body.appendChild(p);
+        setTimeout(function(el){return function(){el.remove()}}(p),5000);
     }
 }
 
-// TYPEWRITER
-function typeWriter(text,element,speed){
-    element.innerText="";
-    var i=0;
+// TYPEWRITER - fixed spacing
+function typeWriter(text, element){
+    element.innerText = "";
+    var i = 0;
+    var speed = 15;
     function type(){
-        if(i<text.length){
-            element.innerText+=text.charAt(i);
-            i++;setTimeout(type,speed);
+        if(i < text.length){
+            element.innerText += text[i];
+            i++;
+            setTimeout(type, speed);
         }
     }
     type();
@@ -409,10 +509,14 @@ function typeWriter(text,element,speed){
 // COPY
 function copyProposal(){
     var text=document.getElementById("proposalText").innerText;
-    navigator.clipboard.writeText(text).then(function(){alert("✅ Copied!");});
+    navigator.clipboard.writeText(text).then(function(){
+        var btn=document.getElementById("copyBtn");
+        btn.innerText="Copied!";
+        setTimeout(function(){btn.innerText="Copy to Clipboard";},2000);
+    });
 }
+document.getElementById("copyBtn").addEventListener("click",copyProposal);
 document.getElementById("copyBtn").addEventListener("touchend",function(e){e.preventDefault();copyProposal();});
-document.getElementById("copyBtn").addEventListener("click",function(){copyProposal();});
 
 // GENERATE
 function generate(){
@@ -432,17 +536,20 @@ function generate(){
         document.getElementById("loading").style.display="none";
         if(data.proposal){
             document.getElementById("output").style.display="block";
-            typeWriter(data.proposal,document.getElementById("proposalText"),18);
+            var cleanText = data.proposal.trim();
+            typeWriter(cleanText, document.getElementById("proposalText"));
             launchConfetti();
-        }else{alert("Error: "+JSON.stringify(data));}
+        }else{
+            alert("Error: "+JSON.stringify(data));
+        }
     })
     .catch(function(err){
         document.getElementById("loading").style.display="none";
         alert("Error: "+err.message);
     });
 }
+document.getElementById("genBtn").addEventListener("click",generate);
 document.getElementById("genBtn").addEventListener("touchend",function(e){e.preventDefault();generate();});
-document.getElementById("genBtn").addEventListener("click",function(){generate();});
 </script>
 </body>
 </html>"""
@@ -450,7 +557,7 @@ document.getElementById("genBtn").addEventListener("click",function(){generate()
 @app.route("/generate", methods=["POST"])
 def generate():
     data = request.json
-    prompt = "Write a professional freelancer proposal for:\nProject: " + str(data.get("title")) + "\nDescription: " + str(data.get("description")) + "\nSkills: " + str(data.get("skills")) + "\nMax 200 words. Be professional, confident and persuasive."
+    prompt = "Write a professional freelancer proposal for:\nProject: " + str(data.get("title")) + "\nDescription: " + str(data.get("description")) + "\nSkills: " + str(data.get("skills")) + "\nMax 200 words. Be professional, confident and persuasive. Use proper spacing between all words."
     try:
         response = req.post(
             "https://openrouter.ai/api/v1/chat/completions",
@@ -469,6 +576,7 @@ def generate():
         result = response.json()
         if "choices" in result:
             proposal = result["choices"][0]["message"]["content"]
+            proposal = " ".join(proposal.split())
             return jsonify({"proposal": proposal})
         else:
             return jsonify({"proposal": "API Error: " + str(result)})
