@@ -13,6 +13,7 @@ def home():
 <title>Proposal Writer AI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
@@ -49,7 +50,6 @@ body{
     width:300px;height:300px;
     background:#4f46e5;
     top:50%;left:50%;
-    transform:translate(-50%,-50%);
     animation:blob3Move 12s ease-in-out infinite alternate
 }
 @keyframes blob1Move{
@@ -80,41 +80,35 @@ body{
     padding:45px 35px;
     text-align:center;
     max-width:360px;width:90%;
-    box-shadow:0 0 80px rgba(124,58,237,0.2),
-               0 0 0 1px rgba(255,255,255,0.03);
+    box-shadow:0 0 80px rgba(124,58,237,0.2);
     animation:popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275)
 }
 @keyframes popIn{
     from{transform:scale(0.85) translateY(20px);opacity:0}
     to{transform:scale(1) translateY(0);opacity:1}
 }
-.popup-logo{
-    width:56px;height:56px;
-    background:linear-gradient(135deg,#7c3aed,#06b6d4);
-    border-radius:16px;
-    display:flex;align-items:center;justify-content:center;
-    margin:0 auto 20px;
-    font-size:24px;
-    box-shadow:0 0 30px rgba(124,58,237,0.4)
+.popup-lottie{
+    width:130px;height:130px;
+    margin:0 auto 15px
 }
 .popup-box h1{
     font-family:'Orbitron',sans-serif;
     font-size:20px;font-weight:700;
-    color:#f1f5f9;
+    color:#ffffff;
     margin-bottom:10px;
     letter-spacing:1px
 }
 .popup-box p{
-    color:#64748b;font-size:13px;
+    color:#94a3b8;font-size:13px;
     line-height:1.7;margin-bottom:25px
 }
 .popup-features{
-    display:flex;flex-direction:column;gap:8px;
+    display:flex;flex-direction:column;gap:10px;
     margin-bottom:25px;text-align:left
 }
 .popup-feature{
     display:flex;align-items:center;gap:10px;
-    color:#94a3b8;font-size:12px
+    color:#cbd5e1;font-size:13px
 }
 .popup-feature-dot{
     width:6px;height:6px;border-radius:50%;
@@ -127,14 +121,9 @@ body{
     color:white;border:none;border-radius:12px;
     font-size:14px;font-weight:600;
     font-family:'Inter',sans-serif;
-    letter-spacing:0.5px;
     cursor:pointer;
     box-shadow:0 4px 20px rgba(124,58,237,0.4);
     transition:all 0.2s
-}
-.popup-btn:hover{
-    box-shadow:0 4px 30px rgba(124,58,237,0.6);
-    transform:translateY(-1px)
 }
 
 /* MAIN */
@@ -145,7 +134,8 @@ body{
 
 /* NAVBAR */
 .navbar{
-    display:flex;align-items:center;justify-content:space-between;
+    display:flex;align-items:center;
+    justify-content:space-between;
     padding:20px 0 30px
 }
 .nav-logo{
@@ -155,113 +145,141 @@ body{
     width:36px;height:36px;
     background:linear-gradient(135deg,#7c3aed,#06b6d4);
     border-radius:10px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:16px
+    display:flex;align-items:center;
+    justify-content:center;font-size:18px
 }
 .nav-logo-text{
     font-family:'Orbitron',sans-serif;
     font-size:14px;font-weight:700;
-    color:#f1f5f9;letter-spacing:1px
+    color:#ffffff;letter-spacing:1px
 }
 .nav-badge{
     background:rgba(124,58,237,0.15);
     border:1px solid rgba(124,58,237,0.3);
     color:#a78bfa;
-    padding:5px 12px;border-radius:20px;
+    padding:5px 14px;border-radius:20px;
     font-size:11px;font-weight:600;
-    letter-spacing:0.5px
+    letter-spacing:1px
 }
 
 /* HERO */
-.hero{text-align:center;padding:20px 0 35px}
+.hero{
+    text-align:center;
+    padding:10px 0 30px;
+    position:relative
+}
+.hero-lottie{
+    width:110px;height:110px;
+    margin:0 auto 15px
+}
 .hero-title{
     font-family:'Orbitron',sans-serif;
-    font-size:30px;font-weight:900;
+    font-size:28px;font-weight:900;
     line-height:1.2;margin-bottom:12px;
-    background:linear-gradient(135deg,#f1f5f9 0%,#a78bfa 50%,#06b6d4 100%);
+    background:linear-gradient(135deg,#ffffff 0%,#a78bfa 50%,#06b6d4 100%);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    filter:drop-shadow(0 0 30px rgba(124,58,237,0.4))
+    filter:drop-shadow(0 0 25px rgba(124,58,237,0.5))
 }
 .hero-sub{
-    color:#475569;font-size:14px;
-    line-height:1.6;max-width:400px;margin:0 auto
+    color:#64748b;font-size:13px;
+    line-height:1.7;max-width:420px;margin:0 auto
 }
 
 /* DIVIDER */
 .divider{
     height:1px;
-    background:linear-gradient(90deg,transparent,rgba(124,58,237,0.3),rgba(6,182,212,0.3),transparent);
+    background:linear-gradient(90deg,transparent,rgba(124,58,237,0.4),rgba(6,182,212,0.4),transparent);
     margin:5px 0 25px
 }
 
 /* CARD */
 .card{
     background:rgba(255,255,255,0.02);
-    border:1px solid rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.07);
     border-radius:16px;padding:28px;margin-bottom:16px;
     backdrop-filter:blur(20px);
-    box-shadow:0 4px 24px rgba(0,0,0,0.4)
+    box-shadow:0 4px 24px rgba(0,0,0,0.5)
 }
 .card-title{
     font-size:11px;font-weight:600;
-    color:#475569;text-transform:uppercase;
-    letter-spacing:2px;margin-bottom:20px;
+    color:#64748b;text-transform:uppercase;
+    letter-spacing:2px;margin-bottom:22px;
     display:flex;align-items:center;gap:8px
 }
 .card-title::before{
     content:'';width:3px;height:12px;
     background:linear-gradient(#7c3aed,#06b6d4);
-    border-radius:2px;display:inline-block
+    border-radius:2px
 }
 
+/* LABELS - BRIGHT WHITE */
 label{
-    color:#64748b;font-weight:500;font-size:12px;
-    display:block;margin-bottom:6px;letter-spacing:0.5px
+    color:#ffffff !important;
+    font-weight:700 !important;
+    font-size:13px !important;
+    display:block;
+    margin-bottom:8px;
+    letter-spacing:0.3px
 }
+
+/* INPUTS - HIGH CONTRAST */
 input,textarea{
-    width:100%;padding:13px 15px;border-radius:10px;
-    border:1px solid rgba(255,255,255,0.07);
-    background:rgba(0,0,0,0.3);
-    color:#e2e8f0;font-size:14px;
+    width:100%;
+    padding:13px 16px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.06);
+    color:#ffffff !important;
+    font-size:14px;
     font-family:'Inter',sans-serif;
-    margin-bottom:18px;
+    margin-bottom:20px;
     transition:all 0.25s ease;
-    outline:none
-}
-input:focus,textarea:focus{
-    border-color:rgba(124,58,237,0.6);
-    background:rgba(124,58,237,0.04);
-    box-shadow:0 0 0 3px rgba(124,58,237,0.1)
+    outline:none;
+    caret-color:#a78bfa
 }
 input::placeholder,textarea::placeholder{
-    color:#1e293b
+    color:#64748b !important;
+    font-size:13px
 }
-textarea{height:100px;resize:none}
+input:focus,textarea:focus{
+    border-color:rgba(124,58,237,0.7) !important;
+    background:rgba(124,58,237,0.08) !important;
+    box-shadow:0 0 0 3px rgba(124,58,237,0.15),
+               0 0 20px rgba(124,58,237,0.2) !important;
+    color:#ffffff !important
+}
+textarea{height:105px;resize:none}
+
+/* SKILLS INPUT SPECIAL GLOW */
+#skills:focus{
+    border-color:rgba(6,182,212,0.7) !important;
+    background:rgba(6,182,212,0.06) !important;
+    box-shadow:0 0 0 3px rgba(6,182,212,0.15),
+               0 0 20px rgba(6,182,212,0.2) !important
+}
 
 /* BUTTON */
 #genBtn{
     width:100%;padding:16px;
     background:linear-gradient(135deg,#7c3aed,#4f46e5);
-    color:white;border:none;border-radius:12px;
+    color:#ffffff;border:none;border-radius:12px;
     font-size:14px;font-weight:600;
     font-family:'Inter',sans-serif;
-    letter-spacing:0.5px;cursor:pointer;
+    cursor:pointer;
     position:relative;overflow:hidden;
     box-shadow:0 4px 20px rgba(124,58,237,0.35);
-    transition:all 0.25s ease;
-    animation:subtlePulse 3s ease-in-out infinite
+    animation:subtlePulse 3s ease-in-out infinite;
+    letter-spacing:0.5px
 }
 @keyframes subtlePulse{
     0%,100%{box-shadow:0 4px 20px rgba(124,58,237,0.35)}
-    50%{box-shadow:0 4px 35px rgba(124,58,237,0.6)}
+    50%{box-shadow:0 4px 35px rgba(124,58,237,0.65)}
 }
-#genBtn:active{transform:scale(0.99)}
 #genBtn::after{
     content:'';position:absolute;
-    top:0;left:-100%;
-    width:100%;height:100%;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
+    top:0;left:-100%;width:100%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
     animation:shimmer 2.5s linear infinite
 }
 @keyframes shimmer{
@@ -272,23 +290,17 @@ textarea{height:100px;resize:none}
 #loading{
     text-align:center;padding:35px;display:none
 }
-.loading-inner{
-    display:inline-flex;flex-direction:column;
-    align-items:center;gap:15px
-}
 .spinner{
-    width:40px;height:40px;
+    width:42px;height:42px;
     border:2px solid rgba(124,58,237,0.15);
     border-top:2px solid #7c3aed;
     border-right:2px solid #06b6d4;
     border-radius:50%;
-    animation:spin 0.7s linear infinite
+    animation:spin 0.7s linear infinite;
+    margin:0 auto 15px
 }
 @keyframes spin{to{transform:rotate(360deg)}}
-#loading p{
-    color:#475569;font-size:13px;
-    font-weight:500;letter-spacing:0.5px
-}
+#loading p{color:#64748b;font-size:13px;font-weight:500}
 
 /* OUTPUT */
 .output{
@@ -297,8 +309,6 @@ textarea{height:100px;resize:none}
     border-radius:16px;padding:28px;
     margin-bottom:16px;display:none;
     backdrop-filter:blur(20px);
-    box-shadow:0 4px 24px rgba(0,0,0,0.4),
-               0 0 0 1px rgba(6,182,212,0.05);
     animation:fadeUp 0.4s ease
 }
 @keyframes fadeUp{
@@ -307,19 +317,21 @@ textarea{height:100px;resize:none}
 }
 .output-header{
     display:flex;align-items:center;
-    justify-content:space-between;
-    margin-bottom:18px
+    justify-content:space-between;margin-bottom:18px
 }
 .output-title{
     font-size:11px;font-weight:600;
-    color:#475569;text-transform:uppercase;
+    color:#64748b;text-transform:uppercase;
     letter-spacing:2px;
     display:flex;align-items:center;gap:8px
 }
 .output-title::before{
     content:'';width:3px;height:12px;
     background:linear-gradient(#06b6d4,#7c3aed);
-    border-radius:2px;display:inline-block
+    border-radius:2px
+}
+.output-lottie{
+    width:45px;height:45px
 }
 .output-status{
     display:flex;align-items:center;gap:6px;
@@ -331,20 +343,26 @@ textarea{height:100px;resize:none}
     animation:statusPulse 2s ease infinite
 }
 @keyframes statusPulse{
-    0%,100%{opacity:1;transform:scale(1)}
-    50%{opacity:0.5;transform:scale(0.8)}
+    0%,100%{opacity:1}50%{opacity:0.4}
 }
+
+/* PROPOSAL TEXT - SPACING FIXED */
 .proposal-text{
-    background:rgba(0,0,0,0.25);
+    background:rgba(0,0,0,0.3);
     padding:20px;border-radius:12px;
-    line-height:1.8;color:#cbd5e1;
+    line-height:1.9;
+    color:#e2e8f0;
     font-size:14px;
     white-space:pre-wrap;
     word-spacing:normal;
+    word-break:normal;
     letter-spacing:normal;
-    border-left:2px solid rgba(124,58,237,0.4);
-    min-height:60px;font-family:'Inter',sans-serif
+    border-left:2px solid rgba(124,58,237,0.5);
+    min-height:60px;
+    font-family:'Inter',sans-serif;
+    font-weight:400
 }
+
 #copyBtn{
     margin-top:16px;width:100%;padding:13px;
     background:rgba(255,255,255,0.03);
@@ -352,12 +370,11 @@ textarea{height:100px;resize:none}
     color:#94a3b8;border-radius:10px;
     font-size:13px;font-weight:500;
     font-family:'Inter',sans-serif;
-    cursor:pointer;
-    transition:all 0.2s ease
+    cursor:pointer;transition:all 0.2s
 }
 #copyBtn:active{
-    background:rgba(255,255,255,0.06);
-    color:#e2e8f0
+    background:rgba(255,255,255,0.07);
+    color:#ffffff
 }
 
 /* CONFETTI */
@@ -373,11 +390,9 @@ textarea{height:100px;resize:none}
 
 /* FOOTER */
 .footer{
-    text-align:center;padding:20px 0 30px
+    text-align:center;padding:20px 0 35px
 }
-.footer p{
-    color:#1e293b;font-size:11px;letter-spacing:1px
-}
+.footer p{color:#1e293b;font-size:11px;letter-spacing:1px}
 </style>
 </head>
 <body>
@@ -389,9 +404,9 @@ textarea{height:100px;resize:none}
 <!-- POPUP -->
 <div class="popup-overlay" id="welcomePopup">
     <div class="popup-box">
-        <div class="popup-logo">⚡</div>
-        <h1>PROPOSAL WRITER</h1>
-        <p>AI-powered proposal generator for freelancers. Win more clients with professional proposals.</p>
+        <div class="popup-lottie" id="popupLottie"></div>
+        <h1>PROPOSAL WRITER AI</h1>
+        <p>AI-powered proposal generator for freelancers. Win more clients instantly.</p>
         <div class="popup-features">
             <div class="popup-feature">
                 <div class="popup-feature-dot"></div>
@@ -403,7 +418,7 @@ textarea{height:100px;resize:none}
             </div>
             <div class="popup-feature">
                 <div class="popup-feature-dot"></div>
-                <span>100% free, no signup required</span>
+                <span>100% free, no signup needed</span>
             </div>
         </div>
         <button class="popup-btn" id="startBtn">Get Started Free</button>
@@ -420,37 +435,46 @@ textarea{height:100px;resize:none}
         <div class="nav-badge">FREE</div>
     </div>
 
+    <!-- HERO WITH LOTTIE -->
     <div class="hero">
+        <div class="hero-lottie" id="heroLottie"></div>
         <h1 class="hero-title">Write Winning<br>Proposals Instantly</h1>
-        <p class="hero-sub">AI-powered tool that generates professional freelancer proposals. Just fill in the details and let AI do the rest.</p>
+        <p class="hero-sub">AI-powered tool that generates professional freelancer proposals in seconds.</p>
     </div>
 
     <div class="divider"></div>
 
+    <!-- FORM -->
     <div class="card">
         <div class="card-title">Project Details</div>
+
         <label>Project Title</label>
         <input type="text" id="title" placeholder="e.g. Build a landing page for my bakery"/>
+
         <label>Project Description</label>
         <textarea id="description" placeholder="Describe what the client needs..."></textarea>
+
         <label>Your Skills</label>
         <input type="text" id="skills" placeholder="e.g. Python, Web Design, React"/>
+
         <button id="genBtn">Generate Proposal</button>
     </div>
 
     <div id="loading">
-        <div class="loading-inner">
-            <div class="spinner"></div>
-            <p>Generating your proposal...</p>
-        </div>
+        <div class="spinner"></div>
+        <p>Generating your proposal...</p>
     </div>
 
+    <!-- OUTPUT -->
     <div class="output" id="output">
         <div class="output-header">
             <div class="output-title">Generated Proposal</div>
-            <div class="output-status">
-                <div class="status-dot"></div>
-                Ready
+            <div style="display:flex;align-items:center;gap:12px">
+                <div class="output-lottie" id="outputLottie"></div>
+                <div class="output-status">
+                    <div class="status-dot"></div>
+                    Ready
+                </div>
             </div>
         </div>
         <div class="proposal-text" id="proposalText"></div>
@@ -464,6 +488,30 @@ textarea{height:100px;resize:none}
 </div>
 
 <script>
+// LOTTIE - AI Robot in popup
+lottie.loadAnimation({
+    container:document.getElementById('popupLottie'),
+    renderer:'svg',
+    loop:true,autoplay:true,
+    path:'https://assets5.lottiefiles.com/packages/lf20_fcfjwiyb.json'
+});
+
+// LOTTIE - Magic wand in hero
+lottie.loadAnimation({
+    container:document.getElementById('heroLottie'),
+    renderer:'svg',
+    loop:true,autoplay:true,
+    path:'https://assets9.lottiefiles.com/packages/lf20_myejiggj.json'
+});
+
+// LOTTIE - Rocket in output
+lottie.loadAnimation({
+    container:document.getElementById('outputLottie'),
+    renderer:'svg',
+    loop:true,autoplay:true,
+    path:'https://assets10.lottiefiles.com/packages/lf20_touohxv0.json'
+});
+
 // POPUP
 document.getElementById("startBtn").addEventListener("click",function(){
     document.getElementById("welcomePopup").style.display="none";
@@ -475,8 +523,8 @@ document.getElementById("startBtn").addEventListener("touchend",function(e){
 
 // CONFETTI
 function launchConfetti(){
-    var colors=["#a78bfa","#06b6d4","#818cf8","#e879f9","#38bdf8"];
-    for(var i=0;i<50;i++){
+    var colors=["#a78bfa","#06b6d4","#818cf8","#e879f9","#38bdf8","#34d399"];
+    for(var i=0;i<55;i++){
         var p=document.createElement("div");
         p.className="confetti-piece";
         p.style.left=Math.random()*100+"vw";
@@ -491,16 +539,15 @@ function launchConfetti(){
     }
 }
 
-// TYPEWRITER - fixed spacing
-function typeWriter(text, element){
-    element.innerText = "";
-    var i = 0;
-    var speed = 15;
+// TYPEWRITER - spaces fixed
+function typeWriter(text,element){
+    element.innerText="";
+    var i=0;
     function type(){
-        if(i < text.length){
-            element.innerText += text[i];
+        if(i<text.length){
+            element.innerText+=text[i];
             i++;
-            setTimeout(type, speed);
+            setTimeout(type,16);
         }
     }
     type();
@@ -516,7 +563,9 @@ function copyProposal(){
     });
 }
 document.getElementById("copyBtn").addEventListener("click",copyProposal);
-document.getElementById("copyBtn").addEventListener("touchend",function(e){e.preventDefault();copyProposal();});
+document.getElementById("copyBtn").addEventListener("touchend",function(e){
+    e.preventDefault();copyProposal();
+});
 
 // GENERATE
 function generate(){
@@ -536,8 +585,7 @@ function generate(){
         document.getElementById("loading").style.display="none";
         if(data.proposal){
             document.getElementById("output").style.display="block";
-            var cleanText = data.proposal.trim();
-            typeWriter(cleanText, document.getElementById("proposalText"));
+            typeWriter(data.proposal.trim(),document.getElementById("proposalText"));
             launchConfetti();
         }else{
             alert("Error: "+JSON.stringify(data));
@@ -549,7 +597,9 @@ function generate(){
     });
 }
 document.getElementById("genBtn").addEventListener("click",generate);
-document.getElementById("genBtn").addEventListener("touchend",function(e){e.preventDefault();generate();});
+document.getElementById("genBtn").addEventListener("touchend",function(e){
+    e.preventDefault();generate();
+});
 </script>
 </body>
 </html>"""
